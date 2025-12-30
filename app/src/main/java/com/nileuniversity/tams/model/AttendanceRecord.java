@@ -29,7 +29,6 @@ public class AttendanceRecord {
      */
     public void saveRecord() {
         // Logic to persist record (in-memory for now)
-        System.out.println("Attendance record saved: " + recordId);
     }
 
     /**

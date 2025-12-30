@@ -28,7 +28,6 @@ public class Attendance {
     public void captureEvent() {
         // Logic to capture event
         this.timestamp = new Date();
-        System.out.println("Attendance event captured: " + type + " at " + timestamp);
     }
 
     /**

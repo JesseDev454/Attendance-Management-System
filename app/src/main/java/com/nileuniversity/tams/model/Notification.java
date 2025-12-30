@@ -25,7 +25,7 @@ public class Notification {
      */
     public void sendAlert() {
         // Logic to send notification
-        System.out.println("Notification sent: " + message);
+
     }
 
     /**
@@ -33,7 +33,7 @@ public class Notification {
      */
     public void pushNotification() {
         // Logic to push notification
-        System.out.println("Push notification: " + message + " to user " + recipientId);
+
     }
 
     // Getters and Setters

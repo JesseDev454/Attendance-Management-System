@@ -26,7 +26,7 @@ public class Staff extends User {
      */
     public void viewClassRecords() {
         // Logic to retrieve class records
-        System.out.println("Staff " + username + " viewing class records.");
+
     }
 
     /**

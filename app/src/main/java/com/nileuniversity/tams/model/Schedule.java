@@ -27,7 +27,7 @@ public class Schedule {
      */
     public void addEntry() {
         // Logic to add schedule
-        System.out.println("Schedule entry added: " + classId);
+
     }
 
     /**

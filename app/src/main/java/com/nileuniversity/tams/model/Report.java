@@ -36,7 +36,7 @@ public class Report {
      */
     public void analyzeTrends() {
         // Logic to analyze data
-        System.out.println("Analyzing attendance trends for report: " + reportId);
+
     }
 
     // Getters and Setters

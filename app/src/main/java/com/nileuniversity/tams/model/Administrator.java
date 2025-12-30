@@ -18,7 +18,7 @@ public class Administrator extends User {
      */
     public void addUser(User newUser) {
         // Logic to add user
-        System.out.println("Administrator " + username + " added new user: " + newUser.getUsername());
+
     }
 
     /**

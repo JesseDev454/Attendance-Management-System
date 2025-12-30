@@ -23,7 +23,6 @@ public class Student extends User {
      */
     public void checkIn() {
         // Logic to record check-in
-        System.out.println("Student " + username + " checked in.");
     }
 
     /**
@@ -31,7 +30,6 @@ public class Student extends User {
      */
     public void checkOut() {
         // Logic to record check-out
-        System.out.println("Student " + username + " checked out.");
     }
 
     /**
