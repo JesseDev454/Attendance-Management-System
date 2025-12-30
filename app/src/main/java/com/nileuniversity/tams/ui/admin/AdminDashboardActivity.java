@@ -110,13 +110,14 @@ public class AdminDashboardActivity extends AppCompatActivity {
             "S" + String.format("%03d", (int)(Math.random() * 1000)),
             "newstudent" + (int)(Math.random() * 100),
             "password123",
-            "student@nileuniversity.edu.ng",
-            UserRole.STUDENT
+            "student@nileuniversity.edu.ng"
         );
         
         try {
+            // Add to authentication service so user can login
+            authService.addUser(newStudent);
             currentAdmin.addUser(newStudent);
-            Toast.makeText(this, "User added successfully: " + newStudent.getUsername(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User added successfully: " + newStudent.getUsername() + "\nPassword: password123", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(this, "Failed to add user: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -134,8 +135,16 @@ public class AdminDashboardActivity extends AppCompatActivity {
         
         try {
             Report overallReport = reportService.generateOverallReport("PDF");
-            String message = "Report Generated:\n\n" + overallReport.getContent();
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            
+            // Open report view activity
+            Intent intent = new Intent(AdminDashboardActivity.this, ReportViewActivity.class);
+            intent.putExtra("REPORT_ID", overallReport.getReportId());
+            intent.putExtra("REPORT_DATE", overallReport.getGeneratedDate().toString());
+            intent.putExtra("REPORT_CONTENT", overallReport.getContent());
+            intent.putExtra("REPORT_FORMAT", overallReport.getFormat());
+            startActivity(intent);
+            
+            Toast.makeText(this, "Report generated successfully", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(this, "Report generation failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }

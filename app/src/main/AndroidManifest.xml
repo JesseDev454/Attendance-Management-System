@@ -4,11 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         
         <!-- Login Activity - Entry Point -->
@@ -26,6 +24,11 @@
             android:name=".ui.student.StudentDashboardActivity"
             android:exported="false" />
         
+        <!-- Attendance History -->
+        <activity
+            android:name=".ui.student.AttendanceHistoryActivity"
+            android:exported="false" />
+        
         <!-- Staff Dashboard -->
         <activity
             android:name=".ui.staff.StaffDashboardActivity"
@@ -34,6 +37,11 @@
         <!-- Admin Dashboard -->
         <activity
             android:name=".ui.admin.AdminDashboardActivity"
+            android:exported="false" />
+        
+        <!-- Report View -->
+        <activity
+            android:name=".ui.admin.ReportViewActivity"
             android:exported="false" />
         
         <!-- Main Activity (Legacy) -->

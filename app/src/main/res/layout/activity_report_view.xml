@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/nun_logo"
+            android:contentDescription="Nile University Logo"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Attendance Report"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#003366"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Report Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvReportId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Report ID: REP0001"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/tvReportDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Generated: 2025-01-01"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Report Content -->
+                <TextView
+                    android:id="@+id/tvReportContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loading report..."
+                    android:textSize="14sp"
+                    android:textColor="#333333"
+                    android:lineSpacingExtra="4dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Back Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back to Dashboard"
+            android:textSize="16sp"
+            android:padding="16dp"
+            app:cornerRadius="8dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <!-- Footer -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/footer_text"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+
+</ScrollView>

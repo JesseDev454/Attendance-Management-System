@@ -121,16 +121,10 @@ public class StudentDashboardActivity extends AppCompatActivity {
     }
     
     private void handleViewHistory() {
-        List<AttendanceRecord> history = attendanceService.getAttendanceHistory(userId);
-        if (history.isEmpty()) {
-            Toast.makeText(this, "No attendance records found", Toast.LENGTH_SHORT).show();
-        } else {
-            StringBuilder message = new StringBuilder("Attendance Records (" + history.size() + "):\n\n");
-            for (AttendanceRecord record : history) {
-                message.append(record.getDate()).append(" - ").append(record.getStatus()).append("\n");
-            }
-            Toast.makeText(this, message.toString(), Toast.LENGTH_LONG).show();
-        }
+        Intent intent = new Intent(StudentDashboardActivity.this, AttendanceHistoryActivity.class);
+        intent.putExtra("USER_ID", userId);
+        intent.putExtra("USERNAME", username);
+        startActivity(intent);
     }
     
     private void handleLogout() {
