@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TAMS - Nile University</string>
+    <string name="university_name">Nile University of Nigeria</string>
+    <string name="footer_text">Nile University of Nigeria – SEN 207 Course Project</string>
+</resources>
