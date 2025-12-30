@@ -3,4 +3,17 @@
     <string name="app_name">TAMS - Nile University</string>
     <string name="university_name">Nile University of Nigeria</string>
     <string name="footer_text">Nile University of Nigeria – SEN 207 Course Project</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="check_in">Check In</string>
+    <string name="check_out">Check Out</string>
+    <string name="view_attendance_history">View Attendance History</string>
+    <string name="monitor_attendance">Monitor Attendance</string>
+    <string name="view_class_records">View Class Records</string>
+    <string name="manage_schedule">Manage Schedule</string>
+    <string name="add_user">Add User</string>
+    <string name="configure_policies">Configure Policies</string>
+    <string name="generate_reports">Generate Reports</string>
+    <string name="logout">Logout</string>
 </resources>

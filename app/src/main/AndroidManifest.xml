@@ -11,15 +11,35 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         
-        <!-- Main Activity - Entry Point -->
+        <!-- Login Activity - Entry Point -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- Student Dashboard -->
+        <activity
+            android:name=".ui.student.StudentDashboardActivity"
+            android:exported="false" />
+        
+        <!-- Staff Dashboard -->
+        <activity
+            android:name=".ui.staff.StaffDashboardActivity"
+            android:exported="false" />
+        
+        <!-- Admin Dashboard -->
+        <activity
+            android:name=".ui.admin.AdminDashboardActivity"
+            android:exported="false" />
+        
+        <!-- Main Activity (Legacy) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         
     </application>
 
