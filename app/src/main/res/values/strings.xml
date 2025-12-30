@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">TAMS - Nile University</string>
     <string name="university_name">Nile University of Nigeria</string>
-    <string name="footer_text">Nile University of Nigeria – SEN 207 Course Project</string>
+    <string name="footer_text">Nile University of Nigeria – SEN 301 Course Project</string>
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
