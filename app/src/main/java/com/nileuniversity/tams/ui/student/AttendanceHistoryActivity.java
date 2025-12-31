@@ -85,6 +85,7 @@ public class AttendanceHistoryActivity extends AppCompatActivity {
                 StringBuilder item = new StringBuilder();
                 item.append("Date: ").append(dateFormat.format(record.getDate())).append("\n");
                 item.append("Status: ").append(record.getStatus()).append("\n");
+                item.append("Method: ").append(record.getMethod()).append("\n");
                 if (record.getRemarks() != null && !record.getRemarks().isEmpty()) {
                     item.append("Remarks: ").append(record.getRemarks());
                 }

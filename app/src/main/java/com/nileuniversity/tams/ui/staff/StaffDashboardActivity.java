@@ -107,46 +107,24 @@ public class StaffDashboardActivity extends AppCompatActivity {
     }
     
     private void handleMonitorAttendance() {
-        // Monitor real-time attendance
+        // Monitor real-time attendance - Navigate to MonitorAttendanceActivity
         currentStaff.monitorRealTime();
-        int totalRecords = attendanceService.getAllAttendanceRecords().size();
-        Toast.makeText(this, "Monitoring attendance... Total records: " + totalRecords, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(StaffDashboardActivity.this, MonitorAttendanceActivity.class);
+        startActivity(intent);
     }
     
     private void handleViewRecords() {
-        // View class records
+        // View class records - Navigate to ViewClassRecordsActivity
         currentStaff.viewClassRecords();
-        List<AttendanceRecord> allRecords = attendanceService.getAllAttendanceRecords();
-        if (allRecords.isEmpty()) {
-            Toast.makeText(this, "No attendance records available", Toast.LENGTH_SHORT).show();
-        } else {
-            StringBuilder message = new StringBuilder("Class Records (" + allRecords.size() + "):\n\n");
-            int count = 0;
-            for (AttendanceRecord record : allRecords) {
-                message.append(record.getStudentId()).append(": ").append(record.getStatus()).append("\n");
-                count++;
-                if (count >= 5) break; // Show first 5 records
-            }
-            if (allRecords.size() > 5) {
-                message.append("\n... and ").append(allRecords.size() - 5).append(" more");
-            }
-            Toast.makeText(this, message.toString(), Toast.LENGTH_LONG).show();
-        }
+        Intent intent = new Intent(StaffDashboardActivity.this, ViewClassRecordsActivity.class);
+        startActivity(intent);
     }
     
     private void handleManageSchedule() {
-        // Manage schedule
+        // Manage schedule - Navigate to ManageScheduleActivity
         currentStaff.manageSchedule();
-        List<Schedule> schedules = scheduleService.getAllSchedules();
-        if (schedules.isEmpty()) {
-            Toast.makeText(this, "No schedules available", Toast.LENGTH_SHORT).show();
-        } else {
-            StringBuilder message = new StringBuilder("Schedules (" + schedules.size() + "):\n\n");
-            for (Schedule schedule : schedules) {
-                message.append(schedule.getCourseName()).append(" - Room ").append(schedule.getRoom()).append("\n");
-            }
-            Toast.makeText(this, message.toString(), Toast.LENGTH_LONG).show();
-        }
+        Intent intent = new Intent(StaffDashboardActivity.this, ManageScheduleActivity.class);
+        startActivity(intent);
     }
     
     private void handleLogout() {

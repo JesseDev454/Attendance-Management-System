@@ -7,13 +7,22 @@
     android:background="@android:color/white">
 
     <TextView
+        android:id="@+id/tvStudentId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student: S001"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#003366"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
         android:id="@+id/tvDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Date: 2025-01-01"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#003366"
+        android:textSize="14sp"
+        android:textColor="#666666"
         android:layout_marginBottom="4dp" />
 
     <TextView
@@ -46,6 +55,19 @@
         android:paddingEnd="8dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:background="#E8F5E9" />
+        android:background="#E8F5E9"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Method: MANUAL"
+        android:textSize="13sp"
+        android:textColor="#666666"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp" />
 
 </LinearLayout>

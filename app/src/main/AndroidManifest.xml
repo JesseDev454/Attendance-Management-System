@@ -34,9 +34,29 @@
             android:name=".ui.staff.StaffDashboardActivity"
             android:exported="false" />
         
+        <!-- Monitor Attendance -->
+        <activity
+            android:name=".ui.staff.MonitorAttendanceActivity"
+            android:exported="false" />
+        
+        <!-- View Class Records -->
+        <activity
+            android:name=".ui.staff.ViewClassRecordsActivity"
+            android:exported="false" />
+        
+        <!-- Manage Schedule -->
+        <activity
+            android:name=".ui.staff.ManageScheduleActivity"
+            android:exported="false" />
+        
         <!-- Admin Dashboard -->
         <activity
             android:name=".ui.admin.AdminDashboardActivity"
+            android:exported="false" />
+        
+        <!-- Configure Policies -->
+        <activity
+            android:name=".ui.admin.ConfigurePoliciesActivity"
             android:exported="false" />
         
         <!-- Report View -->

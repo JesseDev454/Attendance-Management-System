@@ -56,3 +56,5 @@ Thumbs.db
 
 # Gradle Wrapper
 !gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/*.zip
+gradle/wrapper/gradle-*.zip

@@ -36,26 +36,40 @@ public class AttendanceService {
     }
 
     /**
-     * Student check-in
+     * Student check-in (default manual method)
      */
     public Attendance checkIn(Student student, String location) {
+        return checkIn(student, location, AttendanceMethod.MANUAL);
+    }
+
+    /**
+     * Student check-in with specified method
+     */
+    public Attendance checkIn(Student student, String location, AttendanceMethod method) {
         String attendanceId = "ATT" + String.format("%04d", attendanceCounter++);
-        Attendance attendance = new Attendance(attendanceId, "CHECK_IN", location);
+        Attendance attendance = new Attendance(attendanceId, "CHECK_IN", location, method);
         attendance.captureEvent();
         attendanceList.add(attendance);
 
-        // Create attendance record
-        createAttendanceRecord(student.getUserId(), Status.PRESENT);
+        // Create attendance record with method
+        createAttendanceRecord(student.getUserId(), Status.PRESENT, method);
 
         return attendance;
     }
 
     /**
-     * Student check-out
+     * Student check-out (default manual method)
      */
     public Attendance checkOut(Student student, String location) {
+        return checkOut(student, location, AttendanceMethod.MANUAL);
+    }
+
+    /**
+     * Student check-out with specified method
+     */
+    public Attendance checkOut(Student student, String location, AttendanceMethod method) {
         String attendanceId = "ATT" + String.format("%04d", attendanceCounter++);
-        Attendance attendance = new Attendance(attendanceId, "CHECK_OUT", location);
+        Attendance attendance = new Attendance(attendanceId, "CHECK_OUT", location, method);
         attendance.captureEvent();
         attendanceList.add(attendance);
 
@@ -63,11 +77,18 @@ public class AttendanceService {
     }
 
     /**
-     * Create attendance record
+     * Create attendance record (default manual method)
      */
     private void createAttendanceRecord(String studentId, Status status) {
+        createAttendanceRecord(studentId, status, AttendanceMethod.MANUAL);
+    }
+
+    /**
+     * Create attendance record with method
+     */
+    private void createAttendanceRecord(String studentId, Status status, AttendanceMethod method) {
         String recordId = "REC" + String.format("%04d", recordCounter++);
-        AttendanceRecord record = new AttendanceRecord(recordId, studentId, status);
+        AttendanceRecord record = new AttendanceRecord(recordId, studentId, status, method);
         record.saveRecord();
         attendanceRecords.add(record);
     }
@@ -163,5 +184,41 @@ public class AttendanceService {
      */
     public int getTotalRecordsCount() {
         return attendanceRecords.size();
+    }
+
+    /**
+     * Get currently checked-in students
+     * Returns list of attendance records for students who checked in today
+     */
+    public List<AttendanceRecord> getCurrentlyCheckedInStudents() {
+        List<AttendanceRecord> checkedInStudents = new ArrayList<>();
+        Date today = new Date();
+        
+        for (AttendanceRecord record : attendanceRecords) {
+            if (isSameDay(record.getDate(), today) && 
+                (record.getStatus() == Status.PRESENT || record.getStatus() == Status.LATE)) {
+                checkedInStudents.add(record);
+            }
+        }
+        return checkedInStudents;
+    }
+
+    /**
+     * Get attendance records for a specific class
+     * For now, returns all records since we don't have class-specific tracking yet
+     */
+    public List<AttendanceRecord> getRecordsByClass(String classId) {
+        // Currently returns all records
+        // In a full implementation, AttendanceRecord would have a classId field
+        return new ArrayList<>(attendanceRecords);
+    }
+
+    /**
+     * Get student name from student ID
+     * This is a helper method - in real implementation, would query user service
+     */
+    public String getStudentNameById(String studentId) {
+        // Simple mapping - in real app would query AuthenticationService
+        return "Student " + studentId;
     }
 }

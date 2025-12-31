@@ -11,6 +11,7 @@ public class Attendance {
     private Date timestamp;
     private String type; // "CHECK_IN" or "CHECK_OUT"
     private String locationTag;
+    private AttendanceMethod method; // Method of attendance capture
 
     /**
      * Constructor
@@ -20,6 +21,18 @@ public class Attendance {
         this.timestamp = new Date();
         this.type = type;
         this.locationTag = locationTag;
+        this.method = AttendanceMethod.MANUAL; // Default to manual
+    }
+
+    /**
+     * Constructor with method
+     */
+    public Attendance(String attendanceId, String type, String locationTag, AttendanceMethod method) {
+        this.attendanceId = attendanceId;
+        this.timestamp = new Date();
+        this.type = type;
+        this.locationTag = locationTag;
+        this.method = method;
     }
 
     /**
@@ -69,5 +82,13 @@ public class Attendance {
 
     public void setLocationTag(String locationTag) {
         this.locationTag = locationTag;
+    }
+
+    public AttendanceMethod getMethod() {
+        return method;
+    }
+
+    public void setMethod(AttendanceMethod method) {
+        this.method = method;
     }
 }

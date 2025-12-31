@@ -124,9 +124,10 @@ public class AdminDashboardActivity extends AppCompatActivity {
     }
     
     private void handleConfigurePolicies() {
-        // Configure attendance policies
+        // Configure attendance policies - Navigate to ConfigurePoliciesActivity
         currentAdmin.configurePolicies();
-        Toast.makeText(this, "Attendance policies configured successfully", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AdminDashboardActivity.this, ConfigurePoliciesActivity.class);
+        startActivity(intent);
     }
     
     private void handleGenerateReports() {

@@ -81,6 +81,32 @@
             app:iconGravity="start" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCheckInBiometric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check In via Biometric"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"
+            app:cornerRadius="8dp"
+            app:icon="@android:drawable/ic_secure"
+            app:iconGravity="start"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCheckInQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check In via QR Code"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"
+            app:cornerRadius="8dp"
+            app:icon="@android:drawable/ic_menu_camera"
+            app:iconGravity="start"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCheckOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

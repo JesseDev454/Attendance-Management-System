@@ -12,6 +12,7 @@ public class AttendanceRecord {
     private Status status;
     private String remarks;
     private String studentId;
+    private AttendanceMethod method;
 
     /**
      * Constructor
@@ -22,6 +23,19 @@ public class AttendanceRecord {
         this.date = new Date();
         this.status = status;
         this.remarks = "";
+        this.method = AttendanceMethod.MANUAL; // Default to manual
+    }
+
+    /**
+     * Constructor with method
+     */
+    public AttendanceRecord(String recordId, String studentId, Status status, AttendanceMethod method) {
+        this.recordId = recordId;
+        this.studentId = studentId;
+        this.date = new Date();
+        this.status = status;
+        this.remarks = "";
+        this.method = method;
     }
 
     /**
@@ -78,5 +92,13 @@ public class AttendanceRecord {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public AttendanceMethod getMethod() {
+        return method;
+    }
+
+    public void setMethod(AttendanceMethod method) {
+        this.method = method;
     }
 }

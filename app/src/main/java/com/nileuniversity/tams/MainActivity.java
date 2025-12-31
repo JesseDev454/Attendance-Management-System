@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * MainActivity - Entry point of TAMS Android Application
- * Nile University of Nigeria - SEN 207 Course Project
+ * Nile University of Nigeria - SEN 301 Course Project
  */
 public class MainActivity extends AppCompatActivity {
 

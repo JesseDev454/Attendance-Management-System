@@ -67,9 +67,24 @@ public class ReportService {
         content.append("Late: ").append(late).append("\n");
         content.append("Excused: ").append(excused).append("\n");
         
+        // Calculate method breakdown
+        int manual = 0, biometric = 0, qrCode = 0;
+        for (AttendanceRecord record : records) {
+            switch (record.getMethod()) {
+                case MANUAL: manual++; break;
+                case BIOMETRIC: biometric++; break;
+                case QR_CODE: qrCode++; break;
+            }
+        }
+        
+        content.append("\nAttendance Method Breakdown:\n");
+        content.append("Manual: ").append(manual).append("\n");
+        content.append("Biometric: ").append(biometric).append("\n");
+        content.append("QR Code: ").append(qrCode).append("\n");
+        
         if (records.size() > 0) {
             double attendanceRate = (present + late) * 100.0 / records.size();
-            content.append("Attendance Rate: ").append(String.format("%.2f", attendanceRate)).append("%\n");
+            content.append("\nAttendance Rate: ").append(String.format("%.2f", attendanceRate)).append("%\n");
         }
         
         report.setContent(content.toString());
@@ -112,9 +127,24 @@ public class ReportService {
         content.append("Late: ").append(late).append("\n");
         content.append("Excused: ").append(excused).append("\n");
         
+        // Calculate method breakdown for overall report
+        int manual = 0, biometric = 0, qrCode = 0;
+        for (AttendanceRecord record : allRecords) {
+            switch (record.getMethod()) {
+                case MANUAL: manual++; break;
+                case BIOMETRIC: biometric++; break;
+                case QR_CODE: qrCode++; break;
+            }
+        }
+        
+        content.append("\nAttendance Method Breakdown:\n");
+        content.append("Manual: ").append(manual).append("\n");
+        content.append("Biometric: ").append(biometric).append("\n");
+        content.append("QR Code: ").append(qrCode).append("\n");
+        
         if (allRecords.size() > 0) {
             double attendanceRate = (present + late) * 100.0 / allRecords.size();
-            content.append("Overall Attendance Rate: ").append(String.format("%.2f", attendanceRate)).append("%\n");
+            content.append("\nOverall Attendance Rate: ").append(String.format("%.2f", attendanceRate)).append("%\n");
         }
         
         report.setContent(content.toString());
