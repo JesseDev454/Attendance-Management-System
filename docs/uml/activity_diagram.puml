@@ -1,0 +1,166 @@
+@startuml
+skinparam backgroundColor white
+skinparam activityBackgroundColor #E3F2FD
+skinparam activityBorderColor #1565C0
+skinparam activityDiamondBackgroundColor #FFF9C4
+skinparam activityDiamondBorderColor #F57F17
+
+title TAMS - Activity Diagram (Main Workflow)
+
+|#LightBlue|User|
+|#LightGreen|System|
+|#LightYellow|Staff|
+
+start
+
+|User|
+:Launch Application;
+
+|System|
+:Display Login Screen;
+
+|User|
+:Enter Username and Password;
+:Press Login Button;
+
+|System|
+:Validate Credentials;
+
+if (Credentials Valid?) then (yes)
+    :Retrieve User Role;
+    
+    if (Role?) then (STUDENT)
+        |User|
+        :View Student Dashboard;
+        
+        fork
+            :Select Check-In;
+            |System|
+            :Launch QR Scanner (Camera);
+            |User|
+            :Scan QR Code from Screen;
+            |System|
+            :Decode QR Payload;
+            
+            if (QR Valid & Enrolled?) then (yes)
+                :Record CHECK_IN Attendance;
+                :Display Success Message;
+            else (no)
+                :Display Error\n(Invalid/Not Enrolled);
+            endif
+        fork again
+            :Select Check-Out;
+            |System|
+            :Launch QR Scanner (Camera);
+            |User|
+            :Scan QR Code from Screen;
+            |System|
+            :Decode QR Payload;
+            
+            if (Check-In Exists?) then (yes)
+                :Record CHECK_OUT Attendance;
+                :Calculate Duration;
+                :Update Status to COMPLETE;
+            else (no)
+                :Display Error\n(No Check-In Found);
+            endif
+        fork again
+            :Select View History;
+            |System|
+            :Query Attendance Records\n(In-Memory ArrayList);
+            :Display Attendance List;
+        end fork
+        
+    elseif (Role?) then (STAFF)
+        |Staff|
+        :View Staff Dashboard;
+        
+        fork
+            :Select Generate Check-In QR;
+            |System|
+            :Create QR Payload\n(CourseID|DateTime|CHECK_IN);
+            :Generate QR Code Image (ZXing);
+            :Display QR Code on Screen;
+            
+            |Staff|
+            :Project QR for Students to Scan;
+        fork again
+            :Select Generate Check-Out QR;
+            |System|
+            :Create QR Payload\n(CourseID|DateTime|CHECK_OUT);
+            :Generate QR Code Image (ZXing);
+            :Display QR Code on Screen;
+        fork again
+            :Select Monitor Attendance;
+            |System|
+            :Query Current Session Records;
+            :Display Real-Time Count;
+        fork again
+            :Select Process Absent;
+            |System|
+            :Get Enrolled Students;
+            :Compare with Attendance Records;
+            :Mark Non-Attendees as ABSENT;
+            :Display Absent List;
+        end fork
+        
+    else (ADMIN)
+        |User|
+        :View Admin Dashboard;
+        
+        fork
+            :Select Add User;
+            |System|
+            :Display User Form;
+            |User|
+            :Enter User Details\n(Name, ID, Role);
+            |System|
+            :Validate Input;
+            :Add User to ArrayList<User>;
+            :Display Confirmation;
+        fork again
+            :Select Generate Report;
+            |System|
+            :Compile Attendance Data;
+            :Format as Text/CSV;
+            :Save to Device Storage;
+            :Display Report Preview;
+        fork again
+            :Select Configure Policies;
+            |System|
+            :Display Policy Settings;
+            |User|
+            :Modify Settings\n(e.g., Late Threshold);
+            |System|
+            :Save to In-Memory Config;
+        end fork
+        
+    endif
+    
+else (no)
+    |System|
+    :Display Error Message\n("Invalid Credentials");
+    :Clear Password Field;
+    
+    |User|
+    :Retry or Exit;
+endif
+
+|User|
+:Press Logout;
+
+|System|
+:Clear Session Data;
+:Navigate to Login Screen;
+
+stop
+
+legend right
+  |= Symbol |= Meaning |
+  | Diamond | Decision Point |
+  | Rectangle | Activity |
+  | Fork | Parallel/Alternative Paths |
+  | Swimlane | Actor Responsibility |
+endlegend
+
+@enduml

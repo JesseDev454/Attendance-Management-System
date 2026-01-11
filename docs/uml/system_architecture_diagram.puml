@@ -1,0 +1,72 @@
+@startuml
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+skinparam backgroundColor white
+
+title System Architecture Diagram - Layered Architecture
+
+package "Presentation Layer (com.nileuniversity.tams.ui)" as UI {
+    [MainActivity]
+    [LoginActivity]
+    
+    package "Dashboards" {
+        [StudentDashboardActivity]
+        [StaffDashboardActivity]
+        [AdminDashboardActivity]
+    }
+}
+
+package "Business Logic Layer (com.nileuniversity.tams.service)" as Service {
+    [AuthenticationService]
+    [AttendanceService]
+    [ScheduleService]
+    [NotificationService]
+    [ReportService]
+}
+
+package "Data Layer (com.nileuniversity.tams.model)" as Model {
+    package "Domain Entities" {
+        [User]
+        [Student]
+        [Staff]
+        [Administrator]
+        [Attendance]
+        [Schedule]
+        [Report]
+    }
+    
+    database "In-Memory Storage (Static Lists)" {
+        [ArrayList<User>]
+        [ArrayList<Attendance>]
+        [ArrayList<Schedule>]
+    }
+}
+
+' Relationships between UI and Service
+[LoginActivity] --> [AuthenticationService] : validates credentials
+[StudentDashboardActivity] --> [AttendanceService] : records attendance
+[StudentDashboardActivity] --> [NotificationService] : checks alerts
+[StaffDashboardActivity] --> [AttendanceService] : monitors records
+[StaffDashboardActivity] --> [ScheduleService] : manages classes
+[AdminDashboardActivity] --> [AuthenticationService] : manages users
+[AdminDashboardActivity] --> [ReportService] : generates reports
+
+' Relationships between Service and Model/Storage
+[AuthenticationService] ..> [User] : creates/validates
+[AuthenticationService] --> [ArrayList<User>] : CRUD operations
+
+[AttendanceService] ..> [Attendance] : creates
+[AttendanceService] --> [ArrayList<Attendance>] : CRUD operations
+
+[ScheduleService] ..> [Schedule] : manages
+[ScheduleService] --> [ArrayList<Schedule>] : CRUD operations
+
+[ReportService] ..> [Report] : generates
+[ReportService] --> [ArrayList<Attendance>] : reads data
+
+note right of [ArrayList<User>]
+  Data is volatile.
+  Reset on app restart.
+end note
+
+@enduml
